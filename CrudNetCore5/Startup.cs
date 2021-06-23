@@ -26,7 +26,7 @@ namespace CrudNetCore5
         public void ConfigureServices(IServiceCollection services)
         {
             //Configurando conexion
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Environment.GetEnvironmentVariable("LibreriaV1", EnvironmentVariableTarget.Machine)));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
            
             services.AddControllersWithViews();
         }
