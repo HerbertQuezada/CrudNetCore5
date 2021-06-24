@@ -1,0 +1,64 @@
+﻿@model IEnumerable<CrudNetCore5.Models.Libro> 
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    @if (TempData["mensaje"] != null)
+    {
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            @TempData["mensaje"]
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>Lista de Libros</h3>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-success d-block" asp-action="Crear" asp-controller="Libros">Crear Libro</a>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <td>@Html.DisplayNameFor(x => x.Id)</td>
+                        <td>@Html.DisplayNameFor(x => x.Titulo)</td>
+                        <td>@Html.DisplayNameFor(x => x.Descripcion)</td>
+                        <td>@Html.DisplayNameFor(x => x.Autor)</td>
+                        <td>@Html.DisplayNameFor(x => x.FechaLanzamiento)</td>
+                        <td>@Html.DisplayNameFor(x => x.Precio)</td>
+                        <td>Acciones</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Libro libro in Model)
+                    {
+                        <tr>
+                            <td>@libro.Id</td>
+                            <td>@libro.Titulo</td>
+                            <td>@libro.Descripcion</td>
+                            <td>@libro.Autor</td>
+                            <td>@libro.FechaLanzamiento</td>
+                            <td>@libro.Precio</td>
+                            <td>
+                                <a asp-controller="Libros" asp-action="Editar" asp-route-id="@libro.Id" class="btn btn-warning">Editar</a>
+                                <a asp-controller="Libros" asp-action="Eliminar" asp-route-id="@libro.Id" class="btn btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>Aun no ahí registros</p>
+        }
+    </div>
+</div>

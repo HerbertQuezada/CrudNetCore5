@@ -24,6 +24,7 @@ namespace CrudNetCore5.Models
         public DateTime FechaLanzamiento { get; set; }
         [Required(ErrorMessage = "El autor es obligatorio")]
         public string Autor { get; set; }
+        [Required(ErrorMessage = "El Precio es obligatorio")]
         public float Precio { get; set; }
     }
 }
